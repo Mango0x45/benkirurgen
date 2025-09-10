@@ -1,5 +1,5 @@
-# Benkirurgen — LEGv8 Toolchain
+# Benkirurgen — LEGv8 Disassembler
 
-Benkirurgen (English: *The Leg Surgeon*) is a toolchain for the LEGv8
-instruction set.  It currently includes only a disassembler, but an
-assembler and emulator are being developed.
+Benkirurgen är en disassembler för LEGv8-instruktionsuppsättningen.  Den
+här skrevs på knappt 2 timmar för skojs skull som en del av en
+universitetskurs.
