@@ -6,6 +6,9 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <libintl.h>
+
+#define _(s) gettext(s)
 #define lengthof(a) (sizeof(a) / sizeof((a)[0]))
 
 #define YY_USER_ACTION yylloc.col += yyleng;
@@ -127,12 +130,12 @@ HEX [0-9A-F]
 {HEX}{8}  { decode(16); }
 
 {bin}{0,31}|{hex}{0,7}|{HEX}{0,7}|{bin}+|{hex}+|{HEX}+ {
-	bitch("%s:%zu:%zu: opcode ‘%s’ is not 32 bits",
+	bitch(_("%s:%zu:%zu: opcode ‘%s’ is not 32 bits"),
 	      current_file, yylloc.row, yylloc.col, yytext);
 }
 
 ({bin}|{hex}|{HEX})+ {
-	bitch("%s:%zu:%zu: invalid opcode ‘%s’",
+	bitch(_("%s:%zu:%zu: invalid opcode ‘%s’"),
 	      current_file, yylloc.row, yylloc.col, yytext);
 }
 
@@ -140,7 +143,7 @@ HEX [0-9A-F]
 \n { LOCNL; }
 
 . {
-	bitch("%s:%zu:%zu: unknown character ‘%c’",
+	bitch(_("%s:%zu:%zu: unknown character ‘%c’"),
 	      current_file, yylloc.row, yylloc.col, *yytext);
 }
 
@@ -229,7 +232,7 @@ decode(int base)
 		return;
 	}
 
-	bitch("%s:%zu:%zu: unknown opcode ‘%s’",
+	bitch(_("%s:%zu:%zu: unknown opcode ‘%s’"),
 	      current_file, yylloc.row, yylloc.col, yytext);
 }
 
